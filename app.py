@@ -51,7 +51,7 @@ def sendgrid_parser():
     message = sendgrid.Mail()
     message.add_to('John Doe <alexhygate@googlemail.com>')
     message.set_subject(subject)
-    message.set_html('Body')
+    message.set_html('You have sent a text to '+ subject)
     message.set_text('You have sent a text to '+ subject)
     message.set_from('Doe John <doe@email.com>')
     sg.send(message)

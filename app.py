@@ -3,7 +3,7 @@ import simplejson
 import sendgrid
 app = Flask(__name__)
 
-@app.route('/parse', methods=('POST'))
+@app.route('/parse', methods=['POST'])
 def sendgrid_parser():    
     # Consume the entire email
     envelope = simplejson.loads(request.form.get('envelope'))
@@ -29,4 +29,4 @@ def sendgrid_parser():
     return "OK"
   
 if __name__ == "__main__":
-  app.run()
+    app.run()

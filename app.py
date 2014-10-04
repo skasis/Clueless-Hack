@@ -3,6 +3,19 @@ import simplejson
 import sendgrid
 app = Flask(__name__)
 
+@app.route('/test', methods=['GET'])
+def test():
+    sg = sendgrid.SendGridClient('teamclueless', 'whatever214')
+
+    message = sendgrid.Mail()
+    message.add_to('John Doe <alexhygate@googlemail.com>')
+    message.set_subject('Test Email')
+    message.set_html('Body')
+    message.set_text('Body')
+    message.set_from('Doe John <doe@email.com>')
+    sg.send(message)
+    return "hi :)"
+
 @app.route('/parse', methods=['POST'])
 def sendgrid_parser():    
     # Consume the entire email

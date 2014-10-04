@@ -3,3 +3,4 @@ simplejson==3.6.4
 sendgrid==1.1.1
 unittest2==0.5.1
 smtpapi==0.1.2
+twilio==3.6.7

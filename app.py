@@ -3,6 +3,8 @@ import simplejson
 import os
 import sendgrid
 from twilio.rest import TwilioRestClient
+import re
+import datetime
 
 app = Flask(__name__)
 
@@ -18,6 +20,31 @@ def test():
     message.set_from('Doe John <doe@email.com>')
     sg.send(message)
     return "hi :)"
+    
+@app.route('/textmail',methods=['POST','GET'])
+def text_mail():
+    sg = sendgrid.SendGridClient('teamclueless', 'whatever214')
+    message = sendgrid.Mail()
+    day1 = datetime.date.today()
+    
+    ACCOUNT_SID = "AC29506d85676c3f0ed4fc9131a7628b77"
+    AUTH_TOKEN = "91b3531c26ea646706ae5e37966e2e46"
+    
+    client = TwilioRestClient(ACCOUNT_SID, AUTH_TOKEN)
+    recent = client.messages.list(to="+442033897427",
+        date_sent=day1)
+    
+    msg = recent[0].body
+    
+    to_address = re.search(r'[\w\.-]+@[\w\.-]+', msg)
+    message.add_to(to_address.group(0))
+    message.set_subject('Email via Text')
+    message.set_html(msg)
+    message.set_text(msg)
+    message.set_from('Doe John <doe@email.com>')
+    sg.send(message)
+    return "hi :)"
+    
 
 @app.route('/parse', methods=['POST'])
 def sendgrid_parser():    
@@ -57,6 +84,7 @@ def sendgrid_parser():
     sg.send(message)
     return "OK"
     
+
 
 
   

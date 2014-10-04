@@ -1,10 +1,10 @@
-from flask import Flask
+from flask import Flask, request
 import simplejson
 import sendgrid
 app = Flask(__name__)
 
 @app.route('/parse', methods=('POST'))
-def sendgrid_parser(request):    
+def sendgrid_parser():    
     # Consume the entire email
     envelope = simplejson.loads(request.form.get('envelope'))
     

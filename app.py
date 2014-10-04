@@ -1,5 +1,6 @@
 from flask import Flask, request
 import simplejson
+import os
 import sendgrid
 app = Flask(__name__)
 
@@ -42,4 +43,5 @@ def sendgrid_parser():
     return "OK"
   
 if __name__ == "__main__":
-    app.run(port=8080)
+    port = int(os.environ.get('PORT', 5000))
+    app.run(port=port)

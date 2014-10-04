@@ -17,7 +17,7 @@ def sendgrid_parser(request):
     html = request.form.get('html')
     subject = request.form.get('subject')
     
-    sg = sendgrid.SendGridClient('YOUR_SENDGRID_USERNAME', 'YOUR_SENDGRID_PASSWORD')
+    sg = sendgrid.SendGridClient('teamclueless', 'whatever214')
 
     message = sendgrid.Mail()
     message.add_to('John Doe <alexhygate@googlemail.com>')
@@ -25,7 +25,7 @@ def sendgrid_parser(request):
     message.set_html('Body')
     message.set_text('Body')
     message.set_from('Doe John <doe@email.com>')
-    status, msg = sg.send(message)
+    sg.send(message)
     return "OK"
   
 if __name__ == "__main__":

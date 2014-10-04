@@ -31,7 +31,7 @@ def text_mail():
     ACCOUNT_SID = "AC29506d85676c3f0ed4fc9131a7628b77"
     AUTH_TOKEN = "91b3531c26ea646706ae5e37966e2e46"
     
-    time.sleep(30)    
+    time.sleep(5)    
     
     client = TwilioRestClient(ACCOUNT_SID, AUTH_TOKEN)
     recent = client.messages.list(to="+442033897427",

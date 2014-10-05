@@ -71,34 +71,34 @@ def sendgrid_parser():
     # Get some header information
     to_address = envelope['to'][0]
     from_address = envelope['from']
+    if from_address == 'alexhygate@googlemail.com'or's.a.jones72@gmail.com' 
+        # Now, onto the body
+        text = request.form.get('text')
+        html = request.form.get('html')
+        subject = request.form.get('subject')
+        
+        sg = sendgrid.SendGridClient('teamclueless', 'whatever214')
+        
+        # To find these visit https://www.twilio.com/user/account
+        ACCOUNT_SID = "AC29506d85676c3f0ed4fc9131a7628b77"
+        AUTH_TOKEN = "91b3531c26ea646706ae5e37966e2e46"
+        
+        client = TwilioRestClient(ACCOUNT_SID, AUTH_TOKEN)
+        
+        message = client.messages.create(
+            body=text,  # Message body, if any
+            to=subject,
+            from_="+442033897427",
+        )
+        print message.sid
     
-    # Now, onto the body
-    text = request.form.get('text')
-    html = request.form.get('html')
-    subject = request.form.get('subject')
-    
-    sg = sendgrid.SendGridClient('teamclueless', 'whatever214')
-    
-    # To find these visit https://www.twilio.com/user/account
-    ACCOUNT_SID = "AC29506d85676c3f0ed4fc9131a7628b77"
-    AUTH_TOKEN = "91b3531c26ea646706ae5e37966e2e46"
-    
-    client = TwilioRestClient(ACCOUNT_SID, AUTH_TOKEN)
-    
-    message = client.messages.create(
-        body=text,  # Message body, if any
-        to=subject,
-        from_="+442033897427",
-    )
-    print message.sid
-
-    message = sendgrid.Mail()
-    message.add_to('John Doe <alexhygate@googlemail.com>')
-    message.set_subject(subject)
-    message.set_html('You have sent a text to '+ subject)
-    message.set_text('You have sent a text to '+ subject)
-    message.set_from('Doe John <doe@email.com>')
-    sg.send(message)
+        message = sendgrid.Mail()
+        message.add_to('John Doe <alexhygate@googlemail.com>')
+        message.set_subject(subject)
+        message.set_html('You have sent a text to '+ subject)
+        message.set_text('You have sent a text to '+ subject)
+        message.set_from('Doe John <doe@email.com>')
+        sg.send(message)
     return "OK"
     
 

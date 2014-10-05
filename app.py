@@ -49,13 +49,10 @@ def text_mail():
     message.add_to(to_address.group(0))
     if msg_body == ' cats':
         message.set_subject('Cat via Text')
-        message.set_html('<html><body><img src="http://28.media.tumblr.com/tumblr_lkc1elNuAw1qbhtrto1_400.gif" border="0" alt="cat"></body></html>')
+        message.set_html('<html><body><img src="http://placekitten.com/g/300/200" width="300" height="200" border="0" alt="cat"></body></html>')
     elif msg_body == ' fresh':
         message.set_subject('Fresh via Text')
         message.set_html('<html><body>In west Philadelphia born and raised<br>On the playground was where I spent most of my days<br>Chillin out maxin relaxin all cool<br>And all shootin some b-ball outside of the school<br>When a couple of guys who were up to no good<br>Started making trouble in my neighborhood<br>I got in one little fight and my mom got scared<br>She said Youre movin with your auntie and uncle in Bel Air</body></html>')
-    elif msg_body == ' shrek':
-        message.set_subject('Shrek is here')
-        message.set_html('<html><body><img src="http://28.media.tumblr.com/tumblr_lkc1elNuAw1qbhtrto1_400.gif" border="0" alt="shrek">)
     else:
         message.set_subject('Email via Text')
         message.set_html(msg_body)
@@ -74,25 +71,27 @@ def sendgrid_parser():
     # Get some header information
     to_address = envelope['to'][0]
     from_address = envelope['from']
+    
     # Now, onto the body
     text = request.form.get('text')
     html = request.form.get('html')
     subject = request.form.get('subject')
-        
+    
     sg = sendgrid.SendGridClient('teamclueless', 'whatever214')
-        
+    
     # To find these visit https://www.twilio.com/user/account
     ACCOUNT_SID = "AC29506d85676c3f0ed4fc9131a7628b77"
     AUTH_TOKEN = "91b3531c26ea646706ae5e37966e2e46"
-        
+    
     client = TwilioRestClient(ACCOUNT_SID, AUTH_TOKEN)
-        
+    
     message = client.messages.create(
         body=text,  # Message body, if any
         to=subject,
-        from_="+442033897427",)
+        from_="+442033897427",
+    )
     print message.sid
-    
+
     message = sendgrid.Mail()
     message.add_to('John Doe <alexhygate@googlemail.com>')
     message.set_subject(subject)

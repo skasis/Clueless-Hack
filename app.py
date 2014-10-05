@@ -50,6 +50,9 @@ def text_mail():
     if msg_body == ' cats':
         message.set_subject('Cat via Text')
         message.set_html('<html><body><img src="http://placekitten.com/g/300/200" width="300" height="200" border="0" alt="cat"></body></html>')
+    elif msg_body == ' fresh':
+        message.set_subject('Fresh via Text')
+        message.set_html('<html><body>In west Philadelphia born and raised<br>On the playground was where I spent most of my days<br>Chillin out maxin relaxin all cool<br>And all shootin some b-ball outside of the school<br>When a couple of guys who were up to no good<br>Started making trouble in my neighborhood<br>I got in one little fight and my mom got scared<br>She said Youre movin with your auntie and uncle in Bel Air</body></html>')
     else:
         message.set_subject('Email via Text')
         message.set_html(msg_body)

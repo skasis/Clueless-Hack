@@ -21,7 +21,13 @@ def test():
     message.set_from('Doe John <doe@email.com>')
     sg.send(message)
     return "hi :)"
-    
+ 
+def strip_email(text, email):
+    if not text.startswith(email):
+        return text
+    else:
+        return text[len(email):]
+   
 @app.route('/textmail',methods=['POST','GET'])
 def text_mail():
     sg = sendgrid.SendGridClient('teamclueless', 'whatever214')
@@ -38,13 +44,19 @@ def text_mail():
         date_sent=day1)
     
     msg = recent[0].body
-    
     to_address = re.search(r'[\w\.-]+@[\w\.-]+', msg)
+    msg_body = strip_email(msg,to_address.group(0))
     message.add_to(to_address.group(0))
-    message.set_subject('Email via Text')
-    message.set_html(msg)
-    message.set_text(msg)
-    message.set_from('Doe John <doe@email.com>')
+    if msg_body == 'cats':
+        message.set_subject('Cat via Text')
+        message.set_html('<html><body><img src="http://placekitten.com/g/300/200" width="300" height="200" border="0" alt="cat"></body></html>')
+        message.set_text()
+    else:
+        message.set_subject('Email via Text')
+        message.set_html(msg_body)
+        message.set_text(msg_body)
+    message.set_from('Sophie Jones <s.a.jones72@gmail.com>')
+    
     sg.send(message)
     return "hi :)"
     

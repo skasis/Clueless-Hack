@@ -53,6 +53,9 @@ def text_mail():
     elif msg_body == ' fresh':
         message.set_subject('Fresh via Text')
         message.set_html('<html><body>In west Philadelphia born and raised<br>On the playground was where I spent most of my days<br>Chillin out maxin relaxin all cool<br>And all shootin some b-ball outside of the school<br>When a couple of guys who were up to no good<br>Started making trouble in my neighborhood<br>I got in one little fight and my mom got scared<br>She said Youre movin with your auntie and uncle in Bel Air</body></html>')
+    elif msg_body == ' shrek':
+        message.set_subject('SHREK via Text')
+        message.set_html('<html><body><img src="http://rack.0.mshcdn.com/media/ZgkyMDE0LzA2LzE2LzIwL3NocmVrLmRyZWFtLmZkNGQ1LnBuZwpwCXRodW1iCTEyMDB4NjI3IwplCWpwZw/acf2ed18/328/shrek.dreamworks.tv_.jpg" width="400" height="209" border="0" alt="shrek"></body></html>')
     else:
         message.set_subject('Email via Text')
         message.set_html(msg_body)

@@ -50,7 +50,6 @@ def text_mail():
     if msg_body == ' cats':
         message.set_subject('Cat via Text')
         message.set_html('<html><body><img src="http://placekitten.com/g/300/200" width="300" height="200" border="0" alt="cat"></body></html>')
-        message.set_text()
     else:
         message.set_subject('Email via Text')
         message.set_html(msg_body)
